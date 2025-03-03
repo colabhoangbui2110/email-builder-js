@@ -14,6 +14,7 @@ import EmailLayoutSidebarPanel from './input-panels/EmailLayoutSidebarPanel';
 import HeadingSidebarPanel from './input-panels/HeadingSidebarPanel';
 import HtmlSidebarPanel from './input-panels/HtmlSidebarPanel';
 import ImageSidebarPanel from './input-panels/ImageSidebarPanel';
+import LayoutSidebarPanel from './input-panels/LayoutSidebarPanel';
 import SpacerSidebarPanel from './input-panels/SpacerSidebarPanel';
 import TextSidebarPanel from './input-panels/TextSidebarPanel';
 
@@ -64,6 +65,8 @@ export default function ConfigurationPanel() {
       return <SpacerSidebarPanel key={selectedBlockId} data={data} setData={(data) => setBlock({ type, data })} />;
     case 'Text':
       return <TextSidebarPanel key={selectedBlockId} data={data} setData={(data) => setBlock({ type, data })} />;
+    case 'Layout':
+      return <LayoutSidebarPanel key={selectedBlockId} data={data} setData={(data) => setBlock({ type, data })} />;
     default:
       return <pre>{JSON.stringify(block, null, '  ')}</pre>;
   }

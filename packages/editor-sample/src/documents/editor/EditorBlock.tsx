@@ -19,7 +19,7 @@ export default function EditorBlock({ id }: EditorBlockProps) {
   const document = useDocument();
   const block = document[id];
   if (!block) {
-    throw new Error('Could not find block');
+    throw new Error('Could not find block ' + id);
   }
   return (
     <EditorBlockContext.Provider value={id}>

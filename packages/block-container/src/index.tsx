@@ -24,9 +24,11 @@ export const ContainerPropsSchema = z.object({
   style: z
     .object({
       backgroundColor: COLOR_SCHEMA,
+      backgroundImage: z.string().optional().nullable(),
       borderColor: COLOR_SCHEMA,
       borderRadius: z.number().optional().nullable(),
       padding: PADDING_SCHEMA,
+      backgroundSize: z.string().optional().nullable(),
     })
     .optional()
     .nullable(),
@@ -45,12 +47,28 @@ function getBorder(style: ContainerProps['style']) {
 }
 
 export function Container({ style, children }: ContainerProps) {
+  // split background image if is multiple path
+  if (style?.backgroundImage) {
+    const backgroundImage = style.backgroundImage.split(',');
+    style.backgroundImage = backgroundImage.map((image) => {
+      // check image is link wrap it in url()
+      // if not return image
+      if (!image.startsWith('http')) {
+        return image;
+      }
+
+      return `url("${image.trim()}")`
+    }).join(',');
+  }
   const wStyle: CSSProperties = {
     backgroundColor: style?.backgroundColor ?? undefined,
+    backgroundImage: style?.backgroundImage ?? undefined,
     border: getBorder(style),
     borderRadius: style?.borderRadius ?? undefined,
     padding: getPadding(style?.padding),
+    backgroundSize: style?.backgroundSize ?? 'cover',
   };
+
   if (!children) {
     return <div style={wStyle} />;
   }

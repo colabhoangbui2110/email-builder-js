@@ -7,6 +7,7 @@ import { NullableColorInput } from '../inputs/ColorInput';
 import { NullableFontFamily } from '../inputs/FontFamily';
 import FontSizeInput from '../inputs/FontSizeInput';
 import FontWeightInput from '../inputs/FontWeightInput';
+import BackgroundImageInput from '../inputs/BackgroundImageInput';
 import PaddingInput from '../inputs/PaddingInput';
 import SliderInput from '../inputs/SliderInput';
 import TextAlignInput from '../inputs/TextAlignInput';
@@ -24,6 +25,8 @@ export default function SingleStylePropertyPanel({ name, value, onChange }: Styl
   };
 
   switch (name) {
+    case 'backgroundImage':
+      return <BackgroundImageInput label="Background image" defaultValue={defaultValue} onChange={handleChange} />;
     case 'backgroundColor':
       return <NullableColorInput label="Background color" defaultValue={defaultValue} onChange={handleChange} />;
     case 'borderColor':

@@ -4,7 +4,7 @@ import { TextField, Typography } from '@mui/material';
 
 type TextDimensionInputProps = {
   label: string;
-  defaultValue: number | null | undefined;
+  defaultValue: number | string | null | undefined;
   onChange: (v: number | null) => void;
 };
 export default function TextDimensionInput({ label, defaultValue, onChange }: TextDimensionInputProps) {
