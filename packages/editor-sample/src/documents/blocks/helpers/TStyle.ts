@@ -1,6 +1,7 @@
 /* eslint-disable @typescript-eslint/no-explicit-any */
 
 export type TStyle = {
+  backgroundImage?: any;
   backgroundColor?: any;
   borderColor?: any;
   borderRadius?: any;
