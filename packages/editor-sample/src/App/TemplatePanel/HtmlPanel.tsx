@@ -8,6 +8,7 @@ import HighlightedCodePanel from './helper/HighlightedCodePanel';
 
 export default function HtmlPanel() {
   const document = useDocument();
+  console.log(JSON.stringify(document));
   const code = useMemo(() => renderToStaticMarkup(document, { rootBlockId: 'root' }), [document]);
   return <HighlightedCodePanel type="html" value={code} />;
 }

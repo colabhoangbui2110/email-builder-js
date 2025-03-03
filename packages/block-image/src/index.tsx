@@ -24,6 +24,12 @@ export const ImagePropsSchema = z.object({
         .optional()
         .nullable(),
       textAlign: z.enum(['center', 'left', 'right']).optional().nullable(),
+      position: z.enum(['relative', 'absolute', 'static', 'fixed', 'sticky']).optional().nullable(),
+      top: z.number().optional(),
+      bottom: z.number().optional(),
+      left: z.number().optional(),
+      right: z.number().optional(),
+      zIndex: z.number().optional(),
     })
     .optional()
     .nullable(),
@@ -31,6 +37,8 @@ export const ImagePropsSchema = z.object({
     .object({
       width: z.number().optional().nullable(),
       height: z.number().optional().nullable(),
+      maxWidth: z.number().optional().nullable(),
+      maxHeight: z.number().optional().nullable(),
       url: z.string().optional().nullable(),
       alt: z.string().optional().nullable(),
       linkHref: z.string().optional().nullable(),
@@ -47,11 +55,19 @@ export function Image({ style, props }: ImageProps) {
     padding: getPadding(style?.padding),
     backgroundColor: style?.backgroundColor ?? undefined,
     textAlign: style?.textAlign ?? undefined,
+    position: style?.position ?? undefined,
+    top: style?.top,
+    bottom: style?.bottom,
+    left: style?.left,
+    right: style?.right,
+    zIndex: style?.zIndex,
   };
 
   const linkHref = props?.linkHref ?? null;
   const width = props?.width ?? undefined;
   const height = props?.height ?? undefined;
+  const maxWidth = props?.maxWidth ?? '100%';
+  const maxHeight = props?.maxHeight ?? '100%';
 
   const imageElement = (
     <img
@@ -67,7 +83,8 @@ export function Image({ style, props }: ImageProps) {
         textDecoration: 'none',
         verticalAlign: props?.contentAlignment ?? 'middle',
         display: 'inline-block',
-        maxWidth: '100%',
+        maxWidth: maxWidth,
+        maxHeight: maxHeight,
       }}
     />
   );

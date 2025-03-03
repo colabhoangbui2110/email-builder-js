@@ -21,6 +21,8 @@ import ContainerEditor from '../blocks/Container/ContainerEditor';
 import ContainerPropsSchema from '../blocks/Container/ContainerPropsSchema';
 import EmailLayoutEditor from '../blocks/EmailLayout/EmailLayoutEditor';
 import EmailLayoutPropsSchema from '../blocks/EmailLayout/EmailLayoutPropsSchema';
+import LayoutEditor from '../blocks/Layout/LayoutEditor';
+import LayoutPropsSchema from '../blocks/Layout/LayoutPropsSchema';
 import EditorBlockWrapper from '../blocks/helpers/block-wrappers/EditorBlockWrapper';
 
 const EDITOR_DICTIONARY = buildBlockConfigurationDictionary({
@@ -88,6 +90,14 @@ const EDITOR_DICTIONARY = buildBlockConfigurationDictionary({
         </EditorBlockWrapper>
       );
     },
+  },
+  Layout: {
+    schema: LayoutPropsSchema,
+    Component: (props) => (
+      <EditorBlockWrapper>
+        <LayoutEditor {...props} />
+      </EditorBlockWrapper>
+    ),
   },
   Text: {
     schema: TextPropsSchema,

@@ -11,6 +11,7 @@ import {
   NotesOutlined,
   SmartButtonOutlined,
   ViewColumnOutlined,
+  ViewQuiltOutlined,
 } from '@mui/icons-material';
 
 import { TEditorBlock } from '../../../../editor/core';
@@ -151,6 +152,23 @@ export const BUTTONS: TButtonProps[] = [
       type: 'Container',
       data: {
         style: { padding: { top: 16, bottom: 16, left: 24, right: 24 } },
+      },
+    }),
+  },
+  {
+    label: 'Layout',
+    icon: <ViewQuiltOutlined />,
+    block: () => ({
+      type: 'Layout',
+      data: {
+        style: { 
+          padding: { top: 16, bottom: 16, left: 24, right: 24 },
+          position: 'relative',
+          height: '300px',
+        },
+        props: {
+          childrenIds: [],
+        },
       },
     }),
   },

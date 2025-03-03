@@ -9,6 +9,7 @@ import SUBSCRIPTION_RECEIPT from './sample/subscription-receipt';
 import WELCOME from './sample/welcome';
 
 export default function getConfiguration(template: string) {
+  console.log('getConfiguration', template)
   if (template.startsWith('#sample/')) {
     const sampleName = template.replace('#sample/', '');
     switch (sampleName) {

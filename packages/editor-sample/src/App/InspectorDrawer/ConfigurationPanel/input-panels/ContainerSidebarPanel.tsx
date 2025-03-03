@@ -24,7 +24,7 @@ export default function ContainerSidebarPanel({ data, setData }: ContainerSideba
   return (
     <BaseSidebarPanel title="Container block">
       <MultiStylePropertyPanel
-        names={['backgroundColor', 'borderColor', 'borderRadius', 'padding']}
+        names={['backgroundColor', 'backgroundImage', 'borderColor', 'borderRadius', 'padding', 'position', 'width', 'height']}
         value={data.style}
         onChange={(style) => updateData({ ...data, style })}
       />

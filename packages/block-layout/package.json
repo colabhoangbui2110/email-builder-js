@@ -1,7 +1,7 @@
 {
-  "name": "@usewaypoint/block-container",
-  "version": "0.0.2",
-  "description": "@usewaypoint/document compatible Container component",
+  "name": "@usewaypoint/block-layout",
+  "version": "0.0.1",
+  "description": "@usewaypoint/document compatible Layout component",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -16,10 +16,9 @@
     "dist"
   ],
   "scripts": {
-    "build": "npx tsup src/index.tsx --format cjs,esm --dts",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "author": "carlos@usewaypoint.com",
+  "author": "",
   "license": "MIT",
   "peerDependencies": {
     "react": "^16 || ^17 || ^18",

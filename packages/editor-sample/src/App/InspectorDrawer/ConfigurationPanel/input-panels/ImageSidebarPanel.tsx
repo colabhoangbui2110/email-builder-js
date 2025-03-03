@@ -67,6 +67,18 @@ export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelPr
           onChange={(height) => updateData({ ...data, props: { ...data.props, height } })}
         />
       </Stack>
+      <Stack direction="row" spacing={2}>
+        <TextDimensionInput
+          label="Max width"
+          defaultValue={data.props?.maxWidth}
+          onChange={(maxWidth) => updateData({ ...data, props: { ...data.props, maxWidth } })}
+        />
+        <TextDimensionInput
+          label="Max height"
+          defaultValue={data.props?.maxHeight}
+          onChange={(maxHeight) => updateData({ ...data, props: { ...data.props, maxHeight } })}
+        />
+      </Stack>
 
       <RadioGroupInput
         label="Alignment"
@@ -85,7 +97,7 @@ export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelPr
       </RadioGroupInput>
 
       <MultiStylePropertyPanel
-        names={['backgroundColor', 'textAlign', 'padding']}
+        names={['backgroundColor', 'textAlign', 'padding', 'position']}
         value={data.style}
         onChange={(style) => updateData({ ...data, style })}
       />

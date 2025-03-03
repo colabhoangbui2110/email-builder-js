@@ -8,6 +8,8 @@ import { ContainerProps } from './ContainerPropsSchema';
 
 export default function ContainerReader({ style, props }: ContainerProps) {
   const childrenIds = props?.childrenIds ?? [];
+  console.log('ContainerReader', style);
+  
   return (
     <BaseContainer style={style}>
       {childrenIds.map((childId) => (

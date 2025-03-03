@@ -21,6 +21,8 @@ import { ContainerPropsSchema } from '../blocks/Container/ContainerPropsSchema';
 import ContainerReader from '../blocks/Container/ContainerReader';
 import { EmailLayoutPropsSchema } from '../blocks/EmailLayout/EmailLayoutPropsSchema';
 import EmailLayoutReader from '../blocks/EmailLayout/EmailLayoutReader';
+import LayoutPropsSchema from '../blocks/Layout/LayoutPropsSchema';
+import LayoutReader from '../blocks/Layout/LayoutReader';
 
 const ReaderContext = createContext<TReaderDocument>({});
 
@@ -40,6 +42,10 @@ const READER_DICTIONARY = buildBlockConfigurationDictionary({
   EmailLayout: {
     schema: EmailLayoutPropsSchema,
     Component: EmailLayoutReader,
+  },
+  Layout: {
+    schema: LayoutPropsSchema,
+    Component: LayoutReader,
   },
   //
   Avatar: {
@@ -87,6 +93,7 @@ const BaseReaderBlock = buildBlockComponent(READER_DICTIONARY);
 export type TReaderBlockProps = { id: string };
 export function ReaderBlock({ id }: TReaderBlockProps) {
   const document = useReaderDocument();
+  console.trace(JSON.stringify(document), id);
   return <BaseReaderBlock {...document[id]} />;
 }
 
