@@ -8,6 +8,10 @@ import { BaseZodDictionary, BlockConfiguration, DocumentBlocksDictionary } from 
  */
 export default function buildBlockComponent<T extends BaseZodDictionary>(blocks: DocumentBlocksDictionary<T>) {
   return function BlockComponent({ type, data }: BlockConfiguration<T>) {
+    if (!blocks[type]) {
+      return null;
+    }
+
     const Component = blocks[type].Component;
     return <Component {...data} />;
   };
