@@ -22,7 +22,7 @@
   "license": "MIT",
   "peerDependencies": {
     "react": "^16 || ^17 || ^18",
-    "zod": "^1 || ^2 || ^3"
+    "zod": "^1 || ^2 || 3.22.4"
   },
   "devDependencies": {
     "@testing-library/react": "^14.2.1",
@@ -30,6 +30,7 @@
   },
   "dependencies": {
     "insane": "^2.6.2",
-    "marked": "^12.0.2"
+    "marked": "^12.0.2",
+    "@usewaypoint/email-builder": "^0.0.8"
   }
 }

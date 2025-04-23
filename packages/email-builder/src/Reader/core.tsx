@@ -21,11 +21,16 @@ import { ContainerPropsSchema } from '../blocks/Container/ContainerPropsSchema';
 import ContainerReader from '../blocks/Container/ContainerReader';
 import { EmailLayoutPropsSchema } from '../blocks/EmailLayout/EmailLayoutPropsSchema';
 import EmailLayoutReader from '../blocks/EmailLayout/EmailLayoutReader';
+import { RenderContext } from '../renderers/renderToStaticMarkup';
 
-const ReaderContext = createContext<TReaderDocument>({});
-
-function useReaderDocument() {
+console.log('READER_DICTIONARY');
+export const ReaderContext = createContext<TReaderDocument>({});
+export const ReaderDataContext = createContext<TReaderDataSource>({});
+export function useReaderDocument() {
   return useContext(ReaderContext);
+}
+export function useReaderData() {
+  return useContext(ReaderDataContext);
 }
 
 const READER_DICTIONARY = buildBlockConfigurationDictionary({
@@ -78,6 +83,7 @@ const READER_DICTIONARY = buildBlockConfigurationDictionary({
 
 export const ReaderBlockSchema = buildBlockConfigurationSchema(READER_DICTIONARY);
 export type TReaderBlock = z.infer<typeof ReaderBlockSchema>;
+export type TReaderDataSource = z.infer<typeof RenderContext>;
 
 export const ReaderDocumentSchema = z.record(z.string(), ReaderBlockSchema);
 export type TReaderDocument = Record<string, TReaderBlock>;
@@ -86,18 +92,61 @@ const BaseReaderBlock = buildBlockComponent(READER_DICTIONARY);
 
 export type TReaderBlockProps = { id: string };
 export function ReaderBlock({ id }: TReaderBlockProps) {
-  const document = useReaderDocument();
-  return <BaseReaderBlock {...document[id]} />;
+  return (
+    <ReaderContext.Consumer>
+      {(document) => (
+        <ReaderDataContext.Consumer>
+          {(context) => (
+            <BaseReaderBlock
+              context={context}
+              {...document[id]} 
+            />
+          )}
+        </ReaderDataContext.Consumer>
+      )}
+    </ReaderContext.Consumer>
+  );
 }
 
 export type TReaderProps = {
   document: Record<string, z.infer<typeof ReaderBlockSchema>>;
+  context?: TReaderDataSource;
   rootBlockId: string;
 };
-export default function Reader({ document, rootBlockId }: TReaderProps) {
+
+const defaultReaderDataContext = {
+  shop: {
+    name: 'The Cozy Corner Bookstore',
+    phone: '+84 24 123 4567',
+    email: 'info@cozycornerbooks.com',
+    domain: 'cozycornerbooks.com',
+  },
+  buyer: {
+    first_name: 'Nguyen',
+    last_name: 'Thi Mai',
+    email: 'mai.nguyen@email.com',
+    phone: '+84 90 987 6543',
+  },
+  discount: {
+    code: 'SUMMER25',
+    value: '25%',
+  },
+};
+
+export default function Reader({ document, rootBlockId, context }: TReaderProps) {
+  const effectiveDataContext = context || defaultReaderDataContext;
+  const effectiveDocument = document || {
+    root: {
+      type: 'EmailLayout',
+      data: {},
+    },
+  };
+
   return (
-    <ReaderContext.Provider value={document}>
-      <ReaderBlock id={rootBlockId} />
+    <ReaderContext.Provider value={effectiveDocument}>
+      <ReaderDataContext.Provider value={effectiveDataContext}>
+        <ReaderBlock id={rootBlockId} />
+      </ReaderDataContext.Provider>
     </ReaderContext.Provider>
   );
 }

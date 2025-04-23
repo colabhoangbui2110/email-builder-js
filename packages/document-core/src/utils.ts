@@ -12,6 +12,8 @@ export type BlockConfiguration<T extends BaseZodDictionary> = {
   [TType in keyof T]: {
     type: TType;
     data: z.infer<T[TType]>;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    context?: any;
   };
 }[keyof T];
 

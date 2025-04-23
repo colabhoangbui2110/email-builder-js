@@ -16,7 +16,9 @@
   "devDependencies": {
     "@jest/globals": "^29.7.0",
     "@testing-library/react": "^14.2.1",
+    "@types/express": "^5.0.1",
     "@types/jest": "^29.5.12",
+    "@types/node": "^22.14.1",
     "@typescript-eslint/eslint-plugin": "^6.21.0",
     "eslint": "^8.56.0",
     "eslint-plugin-react-hooks": "^4.6.0",
@@ -28,7 +30,13 @@
     "ts-jest": "^29.1.2",
     "ts-node": "^10.9.2",
     "tsup": "^8.0.2",
-    "typescript": "^5.3.3",
-    "zod": "^3.22.4"
+    "typescript": "^5.8.3",
+    "zod": "3.22.4",
+    "react": "18.2.0"
+  },
+  "dependencies": {
+    "@usewaypoint/email-builder": "^0.0.8",
+    "body-parser": "^2.2.0",
+    "express": "^5.1.0"
   }
 }

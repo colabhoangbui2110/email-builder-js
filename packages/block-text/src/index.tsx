@@ -62,6 +62,7 @@ const getPadding = (padding: z.infer<typeof PADDING_SCHEMA>) =>
   padding ? `${padding.top}px ${padding.right}px ${padding.bottom}px ${padding.left}px` : undefined;
 
 export const TextPropsSchema = z.object({
+  prepareRenderFunc: z.function().optional().nullable(),
   style: z
     .object({
       color: COLOR_SCHEMA,
@@ -89,7 +90,7 @@ export const TextPropsDefaults = {
   text: '',
 };
 
-export function Text({ style, props }: TextProps) {
+export function Text({ style, props, prepareRenderFunc }: TextProps) {
   const wStyle: CSSProperties = {
     color: style?.color ?? undefined,
     backgroundColor: style?.backgroundColor ?? undefined,
@@ -99,10 +100,14 @@ export function Text({ style, props }: TextProps) {
     textAlign: style?.textAlign ?? undefined,
     padding: getPadding(style?.padding),
   };
-
-  const text = props?.text ?? TextPropsDefaults.text;
-  if (props?.markdown) {
-    return <EmailMarkdown style={wStyle} markdown={text} />;
+  const rawText = props?.text ?? TextPropsDefaults.text;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let preparedText: any = rawText;
+  if (prepareRenderFunc) {
+    preparedText = prepareRenderFunc(rawText);
   }
-  return <div style={wStyle}>{text}</div>;
+  if (props?.markdown) {
+    return <EmailMarkdown style={wStyle} markdown={preparedText} />;
+  }
+  return <div style={wStyle}>{preparedText}</div>;
 }

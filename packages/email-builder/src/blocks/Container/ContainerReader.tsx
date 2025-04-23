@@ -10,7 +10,7 @@ export default function ContainerReader({ style, props }: ContainerProps) {
   const childrenIds = props?.childrenIds ?? [];
   return (
     <BaseContainer style={style}>
-      {childrenIds.map((childId) => (
+      {childrenIds.map((childId: string) => (
         <ReaderBlock key={childId} id={childId} />
       ))}
     </BaseContainer>

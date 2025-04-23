@@ -12,4 +12,9 @@ export {
   //
   TReaderProps,
   default as Reader,
+
+  ReaderContext,
+  ReaderDataContext,
+  useReaderData,
+  useReaderDocument,
 } from './Reader/core';

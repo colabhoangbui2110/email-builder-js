@@ -1,0 +1,174 @@
+{
+  "block": {
+    "Heading": [
+      {
+        "data_source": "shop",
+        "type": "object",
+        "items": [
+          {
+            "path": "name",
+            "label": "Shop name",
+            "default": "Shop name"
+          },
+          {
+            "path": "phone",
+            "data_source": "shop",
+            "label": "Shop phone number",
+            "default": "Shop phone number"
+          },
+          {
+            "path": "email",
+            "label": "Shop email",
+            "default": "Shop email"
+          },
+          {
+            "path": "domain",
+            "label": "Shop domain",
+            "default": "Shop domain"
+          }
+        ]
+      },
+      {
+        "data_source": "buyer",
+        "type": "object",
+        "items": [
+          {
+            "path": "first_name",
+            "label": "Buyer first name",
+            "default": "Buyer first name"
+          },
+          {
+            "path": "last_name",
+            "label": "Buyer last name",
+            "default": "Buyer last name"
+          },
+          {
+            "path": "email",
+            "label": "Buyer email",
+            "default": "Buyer email"
+          },
+          {
+            "path": "phone",
+            "label": "Buyer phone number",
+            "default": "Buyer phone number"
+          }
+        ]
+      },
+      {
+        "data_source": "discount",
+        "type": "object",
+        "items": [
+          {
+            "path": "code",
+            "label": "Discount code",
+            "default": "Discount code"
+          },
+          {
+            "path": "value",
+            "label": "Discount value",
+            "default": "Discount value"
+          }
+        ]
+      }
+    ],
+    "Text": [
+      {
+        "data_source": "shop",
+        "type": "object",
+        "items": [
+          {
+            "path": "name",
+            "label": "Shop name",
+            "default": "Shop name"
+          },
+          {
+            "path": "phone",
+            "data_source": "shop",
+            "label": "Shop phone number",
+            "default": "Shop phone number"
+          },
+          {
+            "path": "email",
+            "label": "Shop email",
+            "default": "Shop email"
+          },
+          {
+            "path": "domain",
+            "label": "Shop domain",
+            "default": "Shop domain"
+          }
+        ]
+      },
+      {
+        "data_source": "buyer",
+        "type": "object",
+        "items": [
+          {
+            "path": "first_name",
+            "label": "Buyer first name",
+            "default": "Buyer first name"
+          },
+          {
+            "path": "last_name",
+            "label": "Buyer last name",
+            "default": "Buyer last name"
+          },
+          {
+            "path": "email",
+            "label": "Buyer email",
+            "default": "Buyer email"
+          },
+          {
+            "path": "phone",
+            "label": "Buyer phone number",
+            "default": "Buyer phone number"
+          }
+        ]
+      },
+      {
+        "data_source": "discount",
+        "type": "object",
+        "items": [
+          {
+            "path": "code",
+            "label": "Discount code",
+            "default": "Discount code"
+          },
+          {
+            "path": "value",
+            "label": "Discount value",
+            "default": "Discount value"
+          }
+        ]
+      }
+    ],
+    "CartItem": [
+      {
+        "data_source": "line_items",
+        "type": "array",
+        "items": [
+          {
+            "path": "title",
+            "label": "Product title",
+            "default": "Product title"
+          },
+          {
+            "path": "quantity",
+            "label": "Product quantity",
+            "default": "Product quantity"
+          },
+          {
+            "path": "price",
+            "label": "Product price",
+            "default": "Product price"
+          },
+          {
+            "path": "vendor",
+            "label": "Product vendor",
+            "default": "Product vendor"
+          }
+        ]
+      }
+    ]
+  }
+}

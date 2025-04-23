@@ -60,6 +60,7 @@ function getFontFamily(fontFamily: z.infer<typeof FONT_FAMILY_SCHEMA>) {
 }
 
 export const HeadingPropsSchema = z.object({
+  prepareRenderFunc: z.function().optional().nullable(),
   props: z
     .object({
       text: z.string().optional().nullable(),
@@ -87,9 +88,17 @@ export const HeadingPropsDefaults = {
   text: '',
 } as const;
 
-export function Heading({ props, style }: HeadingProps) {
+export function Heading({ props, style, prepareRenderFunc }: HeadingProps) {
   const level = props?.level ?? HeadingPropsDefaults.level;
-  const text = props?.text ?? HeadingPropsDefaults.text;
+  const rawText = props?.text ?? HeadingPropsDefaults.text;
+
+  // Process the text to replace placeholders with context values
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let preparedText: any = rawText;
+  if (prepareRenderFunc) {
+    preparedText = prepareRenderFunc(rawText);
+  }
+  
   const hStyle: CSSProperties = {
     color: style?.color ?? undefined,
     backgroundColor: style?.backgroundColor ?? undefined,
@@ -100,13 +109,14 @@ export function Heading({ props, style }: HeadingProps) {
     fontSize: getFontSize(level),
     padding: getPadding(style?.padding),
   };
+
   switch (level) {
     case 'h1':
-      return <h1 style={hStyle}>{text}</h1>;
+      return <h1 style={hStyle}>{preparedText}</h1>;
     case 'h2':
-      return <h2 style={hStyle}>{text}</h2>;
+      return <h2 style={hStyle}>{preparedText}</h2>;
     case 'h3':
-      return <h3 style={hStyle}>{text}</h3>;
+      return <h3 style={hStyle}>{preparedText}</h3>;
   }
 }
 

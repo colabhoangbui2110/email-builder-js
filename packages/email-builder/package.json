@@ -21,9 +21,9 @@
   "author": "carlos@usewaypoint.com",
   "license": "MIT",
   "peerDependencies": {
-    "react": "^16 || ^17 || ^18",
-    "react-dom": "^16 || ^17 || ^18",
-    "zod": "^1 || ^2 || ^3"
+    "react": "^16 || ^17 || 18.2.0",
+    "react-dom": "^16 || ^17 || 18.2.0",
+    "zod": "^1 || ^2 || 3.22.4"
   },
   "dependencies": {
     "@usewaypoint/block-avatar": "^0.0.3",
