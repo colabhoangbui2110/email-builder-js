@@ -1,0 +1,2 @@
+schema: http://localhost:8000/admin/api/v3/graphql/
+documents: '**/*.graphql'

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 
+import { Label } from '@/components/ui/label';
 import { TextFieldsOutlined } from '@mui/icons-material';
-import { InputLabel, Stack } from '@mui/material';
 
 import RawSliderInput from './raw/RawSliderInput';
 
@@ -17,8 +17,8 @@ export default function FontSizeInput({ label, defaultValue, onChange }: Props) 
     onChange(value);
   };
   return (
-    <Stack spacing={1} alignItems="flex-start">
-      <InputLabel shrink>{label}</InputLabel>
+    <div className="flex flex-col items-start gap-2 pb-1">
+      <Label className="mb-1">{label}</Label>
       <RawSliderInput
         iconLabel={<TextFieldsOutlined sx={{ fontSize: 16 }} />}
         value={value}
@@ -28,6 +28,6 @@ export default function FontSizeInput({ label, defaultValue, onChange }: Props) 
         min={10}
         max={48}
       />
-    </Stack>
+    </div>
   );
 }

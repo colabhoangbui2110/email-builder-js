@@ -1,41 +1,32 @@
 import React from 'react';
 
-import { Box, Button, SxProps } from '@mui/material';
-
 type Props = {
   paletteColors: string[];
   value: string;
   onChange: (value: string) => void;
 };
 
-const TILE_BUTTON: SxProps = {
-  width: 24,
-  height: 24,
-};
 export default function Swatch({ paletteColors, value, onChange }: Props) {
   const renderButton = (colorValue: string) => {
+    const isSelected = value === colorValue;
     return (
-      <Button
+      <button
         key={colorValue}
+        type="button"
         onClick={() => onChange(colorValue)}
-        sx={{
-          ...TILE_BUTTON,
-          backgroundColor: colorValue,
-          border: '1px solid',
-          borderColor: value === colorValue ? 'black' : 'grey.200',
-          minWidth: 24,
-          display: 'inline-flex',
-          '&:hover': {
-            backgroundColor: colorValue,
-            borderColor: 'grey.500',
-          },
-        }}
+        className={
+          `w-6 h-6 rounded border transition-colors duration-150 ` +
+          `mr-1 mb-1 ` +
+          (isSelected ? 'border-black ring-2 ring-black' : 'border-gray-200')
+        }
+        style={{ backgroundColor: colorValue }}
+        aria-label={colorValue}
       />
     );
   };
   return (
-    <Box width="100%" sx={{ display: 'grid', gap: 1, gridTemplateColumns: '1fr 1fr 1fr 1fr 1fr 1fr' }}>
+    <div className="w-full grid gap-1" style={{ gridTemplateColumns: 'repeat(6, 1fr)' }}>
       {paletteColors.map((c) => renderButton(c))}
-    </Box>
+    </div>
   );
 }

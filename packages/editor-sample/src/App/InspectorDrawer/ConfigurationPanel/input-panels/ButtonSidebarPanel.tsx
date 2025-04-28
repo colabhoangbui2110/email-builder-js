@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { ToggleButton } from '@mui/material';
 import { ButtonProps, ButtonPropsDefaults, ButtonPropsSchema } from '@usewaypoint/block-button';
 
@@ -48,11 +49,13 @@ export default function ButtonSidebarPanel({ data, setData }: ButtonSidebarPanel
       />
       <RadioGroupInput
         label="Width"
-        defaultValue={fullWidth ? 'FULL_WIDTH' : 'AUTO'}
-        onChange={(v) => updateData({ ...data, props: { ...data.props, fullWidth: v === 'FULL_WIDTH' } })}
+        defaultValue={fullWidth ? 'full' : 'auto'}
+        onChange={(width) => updateData({ ...data, props: { ...data.props, fullWidth: width === 'full' } })}
       >
-        <ToggleButton value="FULL_WIDTH">Full</ToggleButton>
-        <ToggleButton value="AUTO">Auto</ToggleButton>
+        <ToggleGroup type="single" value={fullWidth ? 'full' : 'auto'} onValueChange={(width) => updateData({ ...data, props: { ...data.props, fullWidth: width === 'full' } })}>
+          <ToggleGroupItem value="auto">Auto</ToggleGroupItem>
+          <ToggleGroupItem value="full">Full</ToggleGroupItem>
+        </ToggleGroup>
       </RadioGroupInput>
       <RadioGroupInput
         label="Size"

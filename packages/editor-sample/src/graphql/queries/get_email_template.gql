@@ -1,0 +1,13 @@
+# Get a specific email content by ID
+query GetEmailContent($id: Int!) {
+  emailContent(id: $id) {
+    id
+    shopId
+    name
+    description
+    typeContent
+    structContentJson
+    createdAt
+    updatedAt
+  }
+}

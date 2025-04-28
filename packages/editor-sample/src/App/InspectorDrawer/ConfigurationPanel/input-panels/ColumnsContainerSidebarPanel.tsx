@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import {
   SpaceBarOutlined,
   VerticalAlignBottomOutlined,
   VerticalAlignCenterOutlined,
   VerticalAlignTopOutlined,
 } from '@mui/icons-material';
-import { ToggleButton } from '@mui/material';
 
 import ColumnsContainerPropsSchema, {
   ColumnsContainerProps,
@@ -43,8 +43,10 @@ export default function ColumnsContainerPanel({ data, setData }: ColumnsContaine
           updateData({ ...data, props: { ...data.props, columnsCount: v === '2' ? 2 : 3 } });
         }}
       >
-        <ToggleButton value="2">2</ToggleButton>
-        <ToggleButton value="3">3</ToggleButton>
+        <ToggleGroup type="single" value={data.props?.columnsCount === 2 ? '2' : '3'} onValueChange={(v) => updateData({ ...data, props: { ...data.props, columnsCount: v === '2' ? 2 : 3 } })}>
+          <ToggleGroupItem value="2">2</ToggleGroupItem>
+          <ToggleGroupItem value="3">3</ToggleGroupItem>
+        </ToggleGroup>
       </RadioGroupInput>
       <ColumnWidthsInput
         defaultValue={data.props?.fixedWidths}
@@ -70,15 +72,15 @@ export default function ColumnsContainerPanel({ data, setData }: ColumnsContaine
           updateData({ ...data, props: { ...data.props, contentAlignment } });
         }}
       >
-        <ToggleButton value="top">
+        <ToggleGroupItem value="top">
           <VerticalAlignTopOutlined fontSize="small" />
-        </ToggleButton>
-        <ToggleButton value="middle">
+        </ToggleGroupItem>
+        <ToggleGroupItem value="middle">
           <VerticalAlignCenterOutlined fontSize="small" />
-        </ToggleButton>
-        <ToggleButton value="bottom">
+        </ToggleGroupItem>
+        <ToggleGroupItem value="bottom">
           <VerticalAlignBottomOutlined fontSize="small" />
-        </ToggleButton>
+        </ToggleGroupItem>
       </RadioGroupInput>
 
       <MultiStylePropertyPanel

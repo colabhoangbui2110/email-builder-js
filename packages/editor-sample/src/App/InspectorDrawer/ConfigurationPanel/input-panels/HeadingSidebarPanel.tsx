@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 
-import { ToggleButton } from '@mui/material';
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import { HeadingProps, HeadingPropsDefaults, HeadingPropsSchema } from '@usewaypoint/block-heading';
 
 import BaseSidebarPanel from './helpers/BaseSidebarPanel';
@@ -42,9 +42,11 @@ export default function HeadingSidebarPanel({ data, setData }: HeadingSidebarPan
           updateData({ ...data, props: { ...data.props, level } });
         }}
       >
-        <ToggleButton value="h1">H1</ToggleButton>
-        <ToggleButton value="h2">H2</ToggleButton>
-        <ToggleButton value="h3">H3</ToggleButton>
+        <ToggleGroup type="single" value={data.props?.level ?? HeadingPropsDefaults.level} onValueChange={(level) => updateData({ ...data, props: { ...data.props, level } })}>
+          <ToggleGroupItem value="h1">H1</ToggleGroupItem>
+          <ToggleGroupItem value="h2">H2</ToggleGroupItem>
+          <ToggleGroupItem value="h3">H3</ToggleGroupItem>
+        </ToggleGroup>
       </RadioGroupInput>
       <MultiStylePropertyPanel
         names={['color', 'backgroundColor', 'fontFamily', 'fontWeight', 'textAlign', 'padding']}

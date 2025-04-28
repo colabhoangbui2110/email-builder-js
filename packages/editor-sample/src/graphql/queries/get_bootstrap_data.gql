@@ -1,0 +1,18 @@
+# Get bootstrap data
+query GetBootstrapData {
+  bootstrapData {
+    shopInfo {
+      name
+      email
+      phone
+      address
+      city
+      country
+      zipCode
+    }
+    schema,
+    colors,
+    fonts,
+    logo_url
+  }
+}

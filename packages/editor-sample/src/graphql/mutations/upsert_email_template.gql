@@ -1,0 +1,29 @@
+mutation UpsertEmailContent(
+  $name: String!,
+  $structContentJson: String!,
+  $description: String!,
+  $typeContent: String!,
+  $emailContentId: Int,
+  $isActive: Boolean = true
+) {
+  upsertEmailContent(
+    name: $name,
+    structContentJson: $structContentJson,
+    description: $description,
+    typeContent: $typeContent,
+    emailContentId: $emailContentId,
+    isActive: $isActive
+  ) {
+    emailContent {
+      id
+      shopId
+      name
+      description
+      typeContent
+      createdAt
+      updatedAt
+    }
+    message
+    code
+  }
+}

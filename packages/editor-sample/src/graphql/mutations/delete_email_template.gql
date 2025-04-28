@@ -1,0 +1,8 @@
+# Delete email content
+mutation DeleteEmailContent($id: Int!) {
+  deleteEmailContent(id: $id) {
+    success
+    message
+    code
+  }
+}

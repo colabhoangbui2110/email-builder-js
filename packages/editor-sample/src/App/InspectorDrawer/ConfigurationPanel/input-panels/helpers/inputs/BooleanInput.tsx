@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 
-import { FormControlLabel, Switch } from '@mui/material';
+import { Label } from '@/components/ui/label';
+import { Switch } from '@/components/ui/switch';
 
 type Props = {
   label: string;
@@ -11,17 +12,16 @@ type Props = {
 export default function BooleanInput({ label, defaultValue, onChange }: Props) {
   const [value, setValue] = useState(defaultValue);
   return (
-    <FormControlLabel
-      label={label}
-      control={
-        <Switch
-          checked={value}
-          onChange={(_, checked: boolean) => {
-            setValue(checked);
-            onChange(checked);
-          }}
-        />
-      }
-    />
+    <div className="flex items-center gap-2">
+      <Switch
+        checked={value}
+        onCheckedChange={(checked: boolean) => {
+          setValue(checked);
+          onChange(checked);
+        }}
+        id="boolean-input"
+      />
+      <Label htmlFor="boolean-input">{label}</Label>
+    </div>
   );
 }

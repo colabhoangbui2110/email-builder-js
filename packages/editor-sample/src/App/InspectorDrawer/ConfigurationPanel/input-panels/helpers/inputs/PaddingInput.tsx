@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 
+import { Label } from '@/components/ui/label';
 import {
   AlignHorizontalLeftOutlined,
   AlignHorizontalRightOutlined,
   AlignVerticalBottomOutlined,
   AlignVerticalTopOutlined,
 } from '@mui/icons-material';
-import { InputLabel, Stack } from '@mui/material';
 
 import RawSliderInput from './raw/RawSliderInput';
 
@@ -44,8 +44,8 @@ export default function PaddingInput({ label, defaultValue, onChange }: Props) {
   }
 
   return (
-    <Stack spacing={2} alignItems="flex-start" pb={1}>
-      <InputLabel shrink>{label}</InputLabel>
+    <div className="flex flex-col items-start gap-2 pb-1">
+      <Label className="mb-1">{label}</Label>
 
       <RawSliderInput
         iconLabel={<AlignVerticalTopOutlined sx={{ fontSize: 16 }} />}
@@ -90,6 +90,6 @@ export default function PaddingInput({ label, defaultValue, onChange }: Props) {
         max={80}
         marks
       />
-    </Stack>
+    </div>
   );
 }

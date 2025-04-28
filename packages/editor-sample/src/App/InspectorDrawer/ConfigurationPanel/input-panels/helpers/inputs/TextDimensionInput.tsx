@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { TextField, Typography } from '@mui/material';
+import { Input } from '@/components/ui/input';
+import { Label } from '@/components/ui/label';
 
 type TextDimensionInputProps = {
   label: string;
@@ -13,21 +14,18 @@ export default function TextDimensionInput({ label, defaultValue, onChange }: Te
     onChange(isNaN(value) ? null : value);
   };
   return (
-    <TextField
-      fullWidth
-      onChange={handleChange}
-      defaultValue={defaultValue}
-      label={label}
-      variant="standard"
-      placeholder="auto"
-      size="small"
-      InputProps={{
-        endAdornment: (
-          <Typography variant="body2" color="text.secondary">
-            px
-          </Typography>
-        ),
-      }}
-    />
+    <div className="flex flex-col gap-1 w-full">
+      <Label>{label}</Label>
+      <div className="flex items-center">
+        <Input
+          type="number"
+          onChange={handleChange}
+          defaultValue={defaultValue ?? ''}
+          placeholder="auto"
+          className="w-20"
+        />
+        <span className="ml-2 text-xs text-muted-foreground">px</span>
+      </div>
+    </div>
   );
 }

@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { Box, Button, Divider, Drawer, Link, Stack, Typography } from '@mui/material';
+import { Button } from '@/components/ui/button';
+import { Separator } from '@/components/ui/separator';
+import { Sheet, SheetContent } from '@/components/ui/sheet';
 
 import { useSamplesDrawerOpen } from '../../documents/editor/EditorContext';
 
@@ -13,67 +15,60 @@ export default function SamplesDrawer() {
   const samplesDrawerOpen = useSamplesDrawerOpen();
 
   return (
-    <Drawer
-      variant="persistent"
-      anchor="left"
-      open={samplesDrawerOpen}
-      sx={{
-        width: samplesDrawerOpen ? SAMPLES_DRAWER_WIDTH : 0,
-      }}
-    >
-      <Stack spacing={3} py={1} px={2} width={SAMPLES_DRAWER_WIDTH} justifyContent="space-between" height="100%">
-        <Stack spacing={2} sx={{ '& .MuiButtonBase-root': { width: '100%', justifyContent: 'flex-start' } }}>
-          <Typography variant="h6" component="h1" sx={{ p: 0.75 }}>
+    <Sheet open={samplesDrawerOpen}>
+      <SheetContent side="left" className="w-[240px] p-0">
+        <div className="flex flex-col py-1 px-2 w-[240px] justify-between h-full space-y-3">
+          <div className="space-y-2">
             EmailBuilder.js
-          </Typography>
 
-          <Stack alignItems="flex-start">
-            <SidebarButton href="#">Empty</SidebarButton>
-            <SidebarButton href="#sample/welcome">Welcome email</SidebarButton>
-            <SidebarButton href="#sample/one-time-password">One-time passcode (OTP)</SidebarButton>
-            <SidebarButton href="#sample/reset-password">Reset password</SidebarButton>
-            <SidebarButton href="#sample/order-ecomerce">E-commerce receipt</SidebarButton>
-            <SidebarButton href="#sample/subscription-receipt">Subscription receipt</SidebarButton>
-            <SidebarButton href="#sample/reservation-reminder">Reservation reminder</SidebarButton>
-            <SidebarButton href="#sample/post-metrics-report">Post metrics</SidebarButton>
-            <SidebarButton href="#sample/respond-to-message">Respond to inquiry</SidebarButton>
-          </Stack>
+            <div className="flex flex-col items-start">
+              <SidebarButton href="#">Empty</SidebarButton>
+              <SidebarButton href="#sample/welcome">Welcome email</SidebarButton>
+              <SidebarButton href="#sample/one-time-password">One-time passcode (OTP)</SidebarButton>
+              <SidebarButton href="#sample/reset-password">Reset password</SidebarButton>
+              <SidebarButton href="#sample/order-ecomerce">E-commerce receipt</SidebarButton>
+              <SidebarButton href="#sample/subscription-receipt">Subscription receipt</SidebarButton>
+              <SidebarButton href="#sample/reservation-reminder">Reservation reminder</SidebarButton>
+              <SidebarButton href="#sample/post-metrics-report">Post metrics</SidebarButton>
+              <SidebarButton href="#sample/respond-to-message">Respond to inquiry</SidebarButton>
+            </div>
 
-          <Divider />
+            <Separator />
 
-          <Stack>
-            <Button size="small" href="https://www.usewaypoint.com/open-source/emailbuilderjs" target="_blank">
-              Learn more
+            <div className="flex flex-col">
+              <Button size="sm" variant="ghost" asChild>
+                <a href="https://www.usewaypoint.com/open-source/emailbuilderjs" target="_blank">
+                  Learn more
+                </a>
+              </Button>
+              <Button size="sm" variant="ghost" asChild>
+                <a href="https://github.com/usewaypoint/email-builder-js" target="_blank">
+                  View on GitHub
+                </a>
+              </Button>
+            </div>
+          </div>
+          <div className="space-y-2 px-3 py-3">
+            <a href="https://usewaypoint.com?utm_source=emailbuilderjs" target="_blank" className="inline-block leading-none">
+              <img src={logo} width={32} alt="Waypoint logo" />
+            </a>
+            <div>
+              <p className="text-xs font-semibold uppercase tracking-wider mb-1">
+                Looking to send emails?
+              </p>
+              <p className="text-sm text-muted-foreground mb-4">
+                Waypoint is an end-to-end email API with a &apos;pro&apos; version of this template builder with dynamic
+                variables, loops, conditionals, drag and drop, layouts, and more.
+              </p>
+            </div>
+            <Button variant="default" className="w-full justify-center" asChild>
+              <a href="https://usewaypoint.com?utm_source=emailbuilderjs" target="_blank">
+                Learn more
+              </a>
             </Button>
-            <Button size="small" href="https://github.com/usewaypoint/email-builder-js" target="_blank">
-              View on GitHub
-            </Button>
-          </Stack>
-        </Stack>
-        <Stack spacing={2} px={0.75} py={3}>
-          <Link href="https://usewaypoint.com?utm_source=emailbuilderjs" target="_blank" sx={{ lineHeight: 1 }}>
-            <Box component="img" src={logo} width={32} />
-          </Link>
-          <Box>
-            <Typography variant="overline" gutterBottom>
-              Looking to send emails?
-            </Typography>
-            <Typography variant="body2" color="text.secondary" paragraph>
-              Waypoint is an end-to-end email API with a &apos;pro&apos; version of this template builder with dynamic
-              variables, loops, conditionals, drag and drop, layouts, and more.
-            </Typography>
-          </Box>
-          <Button
-            variant="contained"
-            color="primary"
-            sx={{ justifyContent: 'center' }}
-            href="https://usewaypoint.com?utm_source=emailbuilderjs"
-            target="_blank"
-          >
-            Learn more
-          </Button>
-        </Stack>
-      </Stack>
-    </Drawer>
+          </div>
+        </div>
+      </SheetContent>
+    </Sheet>
   );
 }

@@ -1,0 +1,8 @@
+# Toggle email content status
+mutation ToggleEmailContentStatus($isActive: Boolean = true) {
+  toggleEmailContentStatus(isActive: $isActive) {
+    success
+    message
+    code
+  }
+}

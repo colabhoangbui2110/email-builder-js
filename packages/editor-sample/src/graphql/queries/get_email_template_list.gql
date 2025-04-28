@@ -1,0 +1,12 @@
+# Get a list of email content
+query GetEmailContentList($typeContent: String = "email") {
+  emailContentList(typeContent: $typeContent) {
+    id
+    shopId
+    name
+    description
+    typeContent
+    createdAt
+    updatedAt
+  }
+}

@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 
+import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
 import {
   VerticalAlignBottomOutlined,
   VerticalAlignCenterOutlined,
@@ -55,7 +56,7 @@ export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelPr
           updateData({ ...data, props: { ...data.props, linkHref } });
         }}
       />
-      <Stack direction="row" spacing={2}>
+      <div className="flex flex-row space-x-2">
         <TextDimensionInput
           label="Width"
           defaultValue={data.props?.width}
@@ -66,22 +67,24 @@ export default function ImageSidebarPanel({ data, setData }: ImageSidebarPanelPr
           defaultValue={data.props?.height}
           onChange={(height) => updateData({ ...data, props: { ...data.props, height } })}
         />
-      </Stack>
+      </div>
 
       <RadioGroupInput
-        label="Alignment"
-        defaultValue={data.props?.contentAlignment ?? 'middle'}
-        onChange={(contentAlignment) => updateData({ ...data, props: { ...data.props, contentAlignment } })}
+        label="Vertical alignment"
+        defaultValue={data.props?.verticalAlign ?? 'top'}
+        onChange={(verticalAlign) => updateData({ ...data, props: { ...data.props, verticalAlign } })}
       >
-        <ToggleButton value="top">
-          <VerticalAlignTopOutlined fontSize="small" />
-        </ToggleButton>
-        <ToggleButton value="middle">
-          <VerticalAlignCenterOutlined fontSize="small" />
-        </ToggleButton>
-        <ToggleButton value="bottom">
-          <VerticalAlignBottomOutlined fontSize="small" />
-        </ToggleButton>
+        <ToggleGroup type="single" value={data.props?.verticalAlign ?? 'top'} onValueChange={(verticalAlign) => updateData({ ...data, props: { ...data.props, verticalAlign } })}>
+          <ToggleGroupItem value="top">
+            <VerticalAlignTopOutlined fontSize="small" />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="center">
+            <VerticalAlignCenterOutlined fontSize="small" />
+          </ToggleGroupItem>
+          <ToggleGroupItem value="bottom">
+            <VerticalAlignBottomOutlined fontSize="small" />
+          </ToggleGroupItem>
+        </ToggleGroup>
       </RadioGroupInput>
 
       <MultiStylePropertyPanel

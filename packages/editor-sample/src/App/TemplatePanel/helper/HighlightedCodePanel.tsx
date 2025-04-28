@@ -26,6 +26,7 @@ export default function HighlightedCodePanel({ type, value }: TextEditorPanelPro
 
   return (
     <pre
+      className='text-sm'
       style={{ margin: 0, padding: 16 }}
       dangerouslySetInnerHTML={{ __html: code }}
       onClick={(ev) => {
